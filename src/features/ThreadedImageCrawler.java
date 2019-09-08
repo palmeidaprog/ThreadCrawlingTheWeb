@@ -15,30 +15,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class represents a "web crawler" that crawls the Web looking for
- * image URLs.  The {@link #adicionarURLFila(URL)} method should be called
- * at least once to give the crawler a starting web page.  It will download
- * that page and search it for image URLs in IMG tags.  It puts the image
- * URLs into a queue.  Images can be obtained from the queue by calling
- * {@link #getNextImageURL()} or {@link #getProximaURLDeImagemDisponivel()}.
- * The crawler also searches the web page for links in A tags and adds the 
- * links that it finds to a queue of URLs.  URLs are removed continually from
- * this queue and are searched in the same way.  The crawling is done by
- * multiple threads.
- * <p>Note that the public interface to the class is small and simple!
- * <p>Note that the crawler is "throtled" by the fact that the image queue
- * is of limited size.  After it fills up, the crawling threads will block
- * until room is made in the queue.  After that, the threads will only look
- * for more images as necessary to keep the image queue full.
- * <p>Limitations:  The lenght of the URL queue is limited.  When it is filled,
- * new URLs that are found are simply discarded.  This is to avoid a deadlock
- * that can occur if all the crawling threads.   It might be better to let
- * the queue grow to arbitrary size, or at least to let it grow to a very
- * large size.  The method for determining the base URL of a web page is
- * not correct -- it is assumed that the base URL is the URL that was used
- * to access the page.  This class is NOT meant to be a serious web crawl 
- * program.  It is just a demonstration.
- */
+* Esta classe representa um "rastreador da web" que rastreia a web procurando
+* URLs de imagem. O método {@link #addURLBook (URL)} deve ser chamado
+* pelo menos uma vez para fornecer ao rastreador uma página da web inicial. Vai baixar
+* nessa página e procure por URLs de imagem em tags IMG. Coloca a imagem
+* URLs em uma fila. É possível obter imagens da fila chamando
+* {@link #getNextImageURL ()} ou {@link #getProximaImageAvailable ()}.
+* O crawler também procura links na página da Web nas tags A e adiciona o
+* links encontrados para uma fila de URLs. Os URLs são removidos continuamente de
+* Essa fila é pesquisada da mesma maneira. O rastreamento é feito por
+* vários threads.
+* <p> Observe que a interface pública da classe é pequena e simples!
+* <p> Observe que o crawler é "acelerado" pelo fato de a fila de imagens
+* é de tamanho limitado. Depois de preenchido, os segmentos do crawler bloquearão
+* até que haja espaço na fila. Depois disso, os threads parecerão apenas
+* para obter mais imagens, conforme necessário, para manter a fila de imagens cheia.
+* <p> Limitações: o tamanho da fila da URL é limitado. Quando estiver cheio,
+* novos URLs encontrados são simplesmente descartados. Isso é para evitar um deadlock
+* que pode ocorrer se todos as thread de crawler acessar ao mesmo tempo. Talvez seja melhor deixar
+* a fila cresce para um tamanho arbitrário, ou pelo menos para deixá-la crescer muito
+* tamanho grande. O método para determinar o URL base de uma página da web é
+* incorreto - pressupõe-se que o URL base seja o URL usado
+* para acessar a página.
+*/
 public class ThreadedImageCrawler {
 	
 	/**

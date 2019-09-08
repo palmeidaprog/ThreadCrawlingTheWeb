@@ -109,7 +109,7 @@ public class GetURL {
 
 	private static void saveText(InputStream source) {	
 		try {
-			System.out.println("Retrieving text file...");
+			System.out.println("Recuperando arquivo txt...");
 			Scanner in = new Scanner(source);
 			File outputFile = new File("saved_text_file.txt");
 			int ct = 1;
@@ -123,10 +123,10 @@ public class GetURL {
 			}
 			out.flush();
 			if (out.checkError())
-				throw new Exception("Some error occurred while writing to the file.");
+				throw new Exception("Algum erro ocorreu enquanto escrevia o arquivo.");
 		}
 		catch (Exception e) {
-			System.out.println("Sorry, an error occurred while saving the text file:");
+			System.out.println("Algum erro ocorreu enquanto salvava o arquivo: ");
 			System.out.println(e);
 		}
 	}

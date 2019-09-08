@@ -24,6 +24,12 @@ public class ThreadedImageCrawler {
 	private final static int DALAY_PARA_EVITAR_FLOODING = 500;
 	
 	/**
+	 * Se uma página contiver mais que esse número de links de imagens, 
+	 * o excesso * os links são descartados em vez de adicionados à fila. 
+	 */ 
+	private final static int MAX_IMAGENS_POR_PAGINA = 20;
+	
+	/**
 	 * Crie um crawler que use um número especificado de threads. Usa um URL
 	 * fila de comprimento 250 e uma fila de imagem de comprimento 50.
 	 * @param threadPoolSize o número de threads de crawler a serem criados; devemos ser
@@ -176,6 +182,9 @@ public class ThreadedImageCrawler {
 							imageURLFila.put(enderecoImagem);
 							log("Adicionado " + enderecoImagem + " a fila de imagem.");
 							imageCt++;
+							if (imageCt > MAX_IMAGENS_POR_PAGINA) {
+								break;
+							}
 						}
 						catch (InterruptedException e) {
 						}

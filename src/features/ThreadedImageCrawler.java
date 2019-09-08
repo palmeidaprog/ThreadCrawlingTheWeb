@@ -48,13 +48,7 @@ public class ThreadedImageCrawler {
 	private final static int DALAY_PARA_EVITAR_FLOODING = 500;
 	
 	/**
-	 * If a page contains more than this number of image links, excess
-	 * links are discarded rather than added to the queue.
-	 */
-	private final static int MAX_IMAGES_PER_PAGE = 20;
-	
-	/**
-	 * Crie um rastreador que use um número especificado de threads. Usa um URL
+	 * Crie um crawler que use um número especificado de threads. Usa um URL
 	 * fila de comprimento 250 e uma fila de imagem de comprimento 50.
 	 * @param threadPoolSize o número de threads de crawler a serem criados; devemos ser
 	 * positivo
@@ -65,7 +59,7 @@ public class ThreadedImageCrawler {
 	}
 	
 	/**
-	 * Crie um rastreador com propriedades especificadas.
+	 * Crie um crawler com propriedades especificadas.
 	 * @param threadPoolSize o número de threads do crawler que serão usados.
 	 * @param maxTamanhoFilaURL o tamanho máximo da fila de URL. Quando isso
 	 * a fila é preenchida, novos URLs encontrados são jogados fora.
@@ -98,7 +92,7 @@ public class ThreadedImageCrawler {
 	
 	/**
 	 * Adicione um endereço à fila da URL. Este URL será usado como um
-	 * ponto de partida para rastrear a web. Se a fila de URL estiver cheia,
+	 * ponto de partida para crawlling a web. Se a fila de URL estiver cheia,
 	 * este método será bloqueado até que haja espaço disponível. 
 	 */
 	public void adicionarURLFila(URL url) {
@@ -206,8 +200,6 @@ public class ThreadedImageCrawler {
 							imageURLFila.put(enderecoImagem);
 							log("Adicionado " + enderecoImagem + " a fila de imagem.");
 							imageCt++;
-							if (imageCt > MAX_IMAGES_PER_PAGE)
-								break;
 						}
 						catch (InterruptedException e) {
 						}

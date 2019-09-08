@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * O programa main () nesta classe testa a classe ThreadImageCrawler.
  * Ele apenas cria um ThreadedImageCrawler, fornece um URL inicial e
- * obtém um URL de imagem do rastreador a cada três segundos em um 
+ * obtém um URL de imagem do crawler a cada três segundos em um 
  * loop infinito até o programa terminar.
  */
 public class ThreadedCrawl {

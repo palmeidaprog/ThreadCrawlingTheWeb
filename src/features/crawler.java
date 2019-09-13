@@ -13,14 +13,14 @@ import java.util.concurrent.Executors;
 
 import com.google.gson.Gson;
 
-public class ThreadImageCrawler {
+public class crawler {
 	public static void main(String[] args) {
-		Scanner stdin = new Scanner(System.in);  // Para ler a entrada do usuário.
-		String[] urls;   // URL inicial, do usuário ou arg [0].
+		Scanner stdin = new Scanner(System.in);  // Para ler a entrada do usuï¿½rio.
+		String[] urls;   // URL inicial, do usuï¿½rio ou arg [0].
 		int flagValid;
 		int bufferSize = 14;
 		
-		System.out.print("Digite o URL de início:  ");
+		System.out.print("Digite o URL de inï¿½cio:  ");
 		urls = convertToJson(stdin.nextLine());
 		
 		do {
@@ -29,7 +29,7 @@ public class ThreadImageCrawler {
 				flagValid = 0;
 			}
 			catch (MalformedURLException e) {
-				System.out.println("Desculpe, URL não é valida.");
+				System.out.println("Desculpe, URL nï¿½o ï¿½ valida.");
 				flagValid = 1;
 				return;
 			}
@@ -55,31 +55,6 @@ public class ThreadImageCrawler {
             bufferImage.shutdown();
 
 	}
-
-    public static List<Runnable> createUrlRunnables(Monitor monitorInput, Monitor monitorOutput, int size) {
-        List<Runnable> runnables = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            try {
-                runnables.add(new getURL(monitorInput, monitorOutput));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return runnables;
-    }
-
-    public static List<Runnable> createImageRunnables(Monitor monitorInput, Monitor monitorOutput, int size) {
-        List<Runnable> runnables = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            try {
-                runnables.add(new Images(monitorInput, monitorOutput));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return runnables;
-    }
-
 
     public static String[] convertToJson(String filePath) {
         String json = null;

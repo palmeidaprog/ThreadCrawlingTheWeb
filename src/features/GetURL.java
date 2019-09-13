@@ -6,21 +6,22 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class getURL extends ThreadCrawler {
+public class getURL extends Thread {
+    private Buffer bufferURL;
 
-    public getURL(Monitor monitorInput, Monitor monitorOutput) {
-        super(monitorInput, monitorOutput);
+    public getURL(String url, Buffer bufferURL) {
+        this.bufferURL = bufferURL;
     }
-
+    
     @Override
     public void run() {
         try {
-            String url = this.monitorInput.readFromBuffer();
+            String url = bufferURL.getFromBuffer();
             if(url != null) {
                 Document document = Jsoup.connect("http://" + url).get();
                 for (Element element : document.select("img")) {
                     String imageUrl = element.absUrl("src");
-                    this.monitorOutput.writeOnBuffer(imageUrl);
+                    bufferURL.setToBuffer(imageUrl);
                 }
             }
         } catch (IOException e) {

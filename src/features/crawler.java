@@ -19,7 +19,6 @@ public class crawler {
 		String urls;   // URL inicial, do usu�rio ou arg [0].
 		int flagValid;
 		int bufferSize = 14;
-		Buffer bufferCompartilhado = new Buffer();
 		Gson g = new Gson();
 		
 		System.out.print("Digite o URL de inicio:  ");
@@ -27,13 +26,25 @@ public class crawler {
 		
 		ExecutorService bufferURL = Executors.newFixedThreadPool(bufferSize);
         ExecutorService bufferImage = Executors.newFixedThreadPool(bufferSize);
-
-
+        
         List<String> linkURLs = new ArrayList<>(Arrays.asList(urls));
         List<String> imagemURL = new ArrayList<>();
+        
+		Buffer bufferCompartilhadoImages = new Buffer(imagemURL);
+		Buffer bufferCompartilhadoLinks = new Buffer(linkURLs);
+		
+		getURL getUrlStart = new getURL(bufferCompartilhadoLinks);
+		Images imagesStart = new Images(bufferCompartilhadoImages);
+
        
-        bufferURL.execute(new getURL(bufferCompartilhado));
-        bufferImage.execute(new Images(bufferCompartilhado));
+       try {
+    	   getUrlStart.start();
+    	   imagesStart.start();
+    	   bufferURL.execute(new getURL(bufferCompartilhadoLinks));
+    	   bufferImage.execute(new Images(bufferCompartilhadoImages));
+       } catch  (Exception exception ) {
+           exception.printStackTrace();
+       }
 
 	}
 }

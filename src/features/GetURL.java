@@ -13,7 +13,6 @@ public class getURL extends Thread {
         this.bufferURL = bufferURL;
     }
     
-    @Override
     public void run() {
         try {
             String url = bufferURL.getFromBuffer();

@@ -15,8 +15,8 @@ import com.google.gson.Gson;
 
 public class crawler {
 	public static void main(String[] args) {
-		Scanner stdin = new Scanner(System.in);  // Para ler a entrada do usu�rio.
-		String urls;   // URL inicial, do usu�rio ou arg [0].
+		Scanner stdin = new Scanner(System.in);  // Para ler a entrada do usuario.
+		String urls;   // URL inicial, do usuario ou arg [0].
 		int flagValid;
 		int bufferSize = 14;
 		Gson g = new Gson();
@@ -38,13 +38,16 @@ public class crawler {
 
        
        try {
-    	   getUrlStart.start();
-    	   imagesStart.start();
     	   bufferURL.execute(new getURL(bufferCompartilhadoLinks));
     	   bufferImage.execute(new Images(bufferCompartilhadoImages));
+    	   getUrlStart.start();
+    	   imagesStart.start();
        } catch  (Exception exception ) {
            exception.printStackTrace();
        }
+       
+       bufferURL.shutdown();
+       bufferURL.shutdown();
 
 	}
 }

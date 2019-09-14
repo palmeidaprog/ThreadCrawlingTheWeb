@@ -10,7 +10,6 @@ public class Images extends Thread {
         this.bufferImage = bufferImage;
     }
 
-    @Override
     public void run() {
         String imageUrl = bufferImage.getFromBuffer();
         if(imageUrl != null){

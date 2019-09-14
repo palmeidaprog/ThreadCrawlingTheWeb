@@ -30,16 +30,15 @@ public class crawler {
         List<String> linkURLs = new ArrayList<>(Arrays.asList(urls));
         List<String> imagemURL = new ArrayList<>();
         
-		Buffer bufferCompartilhadoImages = new Buffer(imagemURL);
 		Buffer bufferCompartilhadoLinks = new Buffer(linkURLs);
 		
 		getURL getUrlStart = new getURL(bufferCompartilhadoLinks);
-		Images imagesStart = new Images(bufferCompartilhadoImages);
+		Images imagesStart = new Images(bufferCompartilhadoLinks);
 
        
        try {
-    	   bufferURL.execute(new getURL(bufferCompartilhadoLinks));
-    	   bufferImage.execute(new Images(bufferCompartilhadoImages));
+    	   bufferURL.execute(getUrlStart);
+    	   bufferImage.execute(imagesStart);
     	   getUrlStart.start();
     	   imagesStart.start();
        } catch  (Exception exception ) {

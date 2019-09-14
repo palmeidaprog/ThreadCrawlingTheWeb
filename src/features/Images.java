@@ -1,6 +1,9 @@
 package features;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+
+import java.io.File;
 import java.io.IOException;
 
 public class Images extends Thread {
@@ -11,11 +14,11 @@ public class Images extends Thread {
     }
 
     public void run() {
-        String imageUrl = bufferImage.getFromBuffer();
-        if(imageUrl != null){
+        String imageURL = bufferImage.getFromBuffer();
+        if(imageURL != null){
             try {
-                String data = Jsoup.connect(imageUrl).ignoreContentType(true).execute().body();
-                bufferImage.setToBuffer(data);
+            	Connection.Response imageFromBuffer = Jsoup.connect(imageURL).ignoreContentType(true).execute();                	
+            	File file = File.createTempFile("image", ".pgn");
             } catch (IOException e) {
                 e.printStackTrace();
             }

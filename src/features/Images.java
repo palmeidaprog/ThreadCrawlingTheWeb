@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Images extends Thread {
     private Buffer bufferImage;
 
-    public Images(String url, Buffer bufferImage) {
+    public Images(Buffer bufferImage) {
         this.bufferImage = bufferImage;
     }
 

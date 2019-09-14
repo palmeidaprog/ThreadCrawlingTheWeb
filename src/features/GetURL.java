@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element;
 public class getURL extends Thread {
     private Buffer bufferURL;
 
-    public getURL(String url, Buffer bufferURL) {
+    public getURL(Buffer bufferURL) {
         this.bufferURL = bufferURL;
     }
     

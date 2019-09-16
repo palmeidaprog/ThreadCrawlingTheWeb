@@ -20,9 +20,9 @@ public class crawler {
 		urls = g.toJson(stdin.nextLine());
 		
 		ExecutorService bufferURL = Executors.newFixedThreadPool(bufferSize);
-        ExecutorService bufferImage = Executors.newFixedThreadPool(bufferSize);
+       		ExecutorService bufferImage = Executors.newFixedThreadPool(bufferSize);
         
-        List<String> linkURLs = new ArrayList<>(Arrays.asList(urls));
+        	List<String> linkURLs = new ArrayList<>(Arrays.asList(urls));
         
 		Buffer bufferCompartilhadoLinks = new Buffer(linkURLs);
 		
@@ -30,17 +30,17 @@ public class crawler {
 		Images imagesStart = new Images(bufferCompartilhadoLinks);
 
        
-       try {
-    	   bufferURL.execute(getUrlStart);
-    	   bufferImage.execute(imagesStart);
-    	   getUrlStart.start();
-    	   imagesStart.start();
-       } catch  (Exception exception ) {
-           exception.printStackTrace();
-       }
-       
-       bufferURL.shutdown();
-       bufferURL.shutdown();
+	       try {
+		   bufferURL.execute(getUrlStart);
+		   bufferImage.execute(imagesStart);
+		   getUrlStart.start();
+		   imagesStart.start();
+	       } catch  (Exception exception ) {
+		   exception.printStackTrace();
+	       }
+
+	       bufferURL.shutdown();
+	       bufferURL.shutdown();
 
 	}
 }

@@ -17,8 +17,8 @@ public class getURL extends Thread {
         try {
             String url = bufferURL.getFromBuffer();
             if(url != null) {
-                Document document = Jsoup.connect("http://" + url).get();
-                for (Element element : document.select("img")) {
+                Document document = Jsoup.connect(url).get();
+                for (Element element : document.select("img[src~=(?i)\\.(png|jpe?g|gif)]")) {
                     String imageUrl = element.attr("src");
                     bufferURL.setToBuffer(imageUrl);
                     new Images(bufferURL).start();

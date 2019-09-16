@@ -1,9 +1,5 @@
 package features;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +12,7 @@ import com.google.gson.Gson;
 public class crawler {
 	public static void main(String[] args) {
 		Scanner stdin = new Scanner(System.in);  // Para ler a entrada do usuario.
-		String urls;   // URL inicial, do usuario ou arg [0].
-		int flagValid;
+		String urls;   // URL inicial, do usuario ou arg [0].;
 		int bufferSize = 14;
 		Gson g = new Gson();
 		
@@ -28,7 +23,6 @@ public class crawler {
         ExecutorService bufferImage = Executors.newFixedThreadPool(bufferSize);
         
         List<String> linkURLs = new ArrayList<>(Arrays.asList(urls));
-        List<String> imagemURL = new ArrayList<>();
         
 		Buffer bufferCompartilhadoLinks = new Buffer(linkURLs);
 		

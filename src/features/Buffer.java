@@ -1,11 +1,11 @@
 package features;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Buffer {
-    private List<String> images;
+    private ArrayList<String> images;
     
-    public Buffer (List<String> images) {
+    public Buffer (ArrayList<String> images) {
     	this.images = images;
     }
  

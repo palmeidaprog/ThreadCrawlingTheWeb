@@ -1,16 +1,14 @@
 package features;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 public class Images extends Thread {
-    private static int cont = 0;
-    private final String outputFolder = "src/images";
-    private final String name = "output" + cont;
+    private final String outputFolder = "src/images/";;
     private Buffer bufferImage;
 
     public Images(Buffer bufferImage) {
@@ -21,11 +19,22 @@ public class Images extends Thread {
         String imageURL = bufferImage.getFromBuffer();
         if(imageURL != null){
             try {
-                Connection.Response imageFromBuffer = Jsoup.connect(imageURL).ignoreContentType(true).execute();           
-                OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(new java.io.File(this.outputFolder + this.name)));  
-                out.write(imageFromBuffer.body());
-                out.close();   
-                cont++;	
+                //fazer split pra separar links
+                String[] files = imageURL.split("/");
+                URL urlImage = new URL(imageURL);
+                //usar javaIO pra poder fazer certiho
+                InputStream in = urlImage.openStream();
+                byte[] buffer = new byte[4096];
+                int n = -1;
+                // files.lenght - 1 pra nao ultrapassar o buffer
+                OutputStream os = new FileOutputStream(outputFolder + files[files.length - 1]);  
+                while ( (n = in.read(buffer)) != -1 ){
+                    os.write(buffer, 0, n);
+                }
+                //close the stream
+                os.close();
+                in.close();
+                System.out.println("Image saved");  	
             } catch (IOException e) {
                 e.printStackTrace();
             }

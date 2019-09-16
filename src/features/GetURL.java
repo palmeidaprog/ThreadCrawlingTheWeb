@@ -21,6 +21,7 @@ public class getURL extends Thread {
                 for (Element element : document.select("img[src~=(?i)\\.(png|jpe?g|gif)]")) {
                     String imageUrl = element.attr("src");
                     bufferURL.setToBuffer(imageUrl);
+                    // passar a tag imagem pra poder ser mais facil de fazer download
                     new Images(bufferURL).start();
                 }
             }

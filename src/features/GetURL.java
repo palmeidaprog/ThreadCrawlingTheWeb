@@ -18,11 +18,13 @@ public class getURL extends Thread {
             String url = bufferURL.getFromBuffer();
             if(url != null) {
                 Document document = Jsoup.connect(url).get();
+                // mais de um tipo de tag
                 for (Element element : document.select("img[src~=(?i)\\.(png|jpe?g|gif)]")) {
                     String imageUrl = element.attr("src");
                     bufferURL.setToBuffer(imageUrl);
-                    // passar a tag imagem pra poder ser mais facil de fazer download
+                    // passar a tag pra poder ser mais facil de fazer download
                     new Images(bufferURL).start();
+                    //startando o consumidor
                 }
             }
         } catch (IOException e) {

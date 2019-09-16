@@ -35,7 +35,9 @@ public class crawler {
                 "Error reading file '" 
                 + fileName + "'");                  
 		}
-		
+
+		//baseado no cliente consumidor
+
 		ExecutorService bufferURL = Executors.newFixedThreadPool(bufferSize);
 		Buffer bufferCompartilhadoLinks = new Buffer(urls);
 		getURL getUrlStart = new getURL(bufferCompartilhadoLinks);

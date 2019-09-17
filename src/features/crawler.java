@@ -41,9 +41,12 @@ public class crawler {
 		ExecutorService bufferURL = Executors.newFixedThreadPool(bufferSize);
 		Buffer bufferCompartilhadoLinks = new Buffer(urls);
 		getURL getUrlStart = new getURL(bufferCompartilhadoLinks);
+		Images imageURLStart = new Images(bufferCompartilhadoLinks);
+
        
 	    try {
 			getUrlStart.start();
+			imageURLStart.start();
 			bufferURL.execute(getUrlStart);
 	    } catch  (Exception exception ) {
 		   exception.printStackTrace();

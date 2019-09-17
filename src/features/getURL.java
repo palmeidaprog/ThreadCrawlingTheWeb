@@ -23,8 +23,6 @@ public class getURL extends Thread {
                     String imageUrl = element.attr("src");
                     bufferURL.setToBuffer(imageUrl);
                     // passar a tag pra poder ser mais facil de fazer download
-                    new Images(bufferURL).start();
-                    //startando o consumidor
                 }
             }
         } catch (IOException e) {
